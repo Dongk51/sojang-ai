@@ -34,3 +34,23 @@ class OrderMemo(Base):
     alert_datetime = Column(DateTime, nullable=False)
     is_alerted = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime, server_default=func.now())
+
+
+class SalaryCalculation(Base):
+    __tablename__ = "salary_calculations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    hourly_wage = Column(Float, nullable=False)
+    daily_hours = Column(Float, nullable=False)
+    work_days = Column(Integer, nullable=False)
+    overtime_hours = Column(Float, nullable=False)
+    night_hours = Column(Float, nullable=False)
+    holiday_hours = Column(Float, nullable=False)
+    base_salary = Column(Float, nullable=False)
+    weekly_holiday_pay = Column(Float, nullable=False)
+    overtime_pay = Column(Float, nullable=False)
+    night_pay = Column(Float, nullable=False)
+    holiday_pay = Column(Float, nullable=False)
+    total_salary = Column(Float, nullable=False)
+    created_at = Column(DateTime, server_default=func.now())

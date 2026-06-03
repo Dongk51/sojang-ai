@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage';
 import VatCalculatorPage from './pages/VatCalculatorPage';
 import OrderMemoPage from './pages/OrderMemoPage';
 import AiAnalyzePage from './pages/AiAnalyzePage';
+import SalaryCalculatorPage from './pages/SalaryCalculatorPage';
 
 export default function App() {
   return (
@@ -44,6 +45,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <AiAnalyzePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/salary"
+            element={
+              <ProtectedRoute>
+                <SalaryCalculatorPage />
               </ProtectedRoute>
             }
           />

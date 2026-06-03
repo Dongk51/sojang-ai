@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 from database import engine, Base
-from routers import auth, tax, orders, ai
+from routers import auth, tax, orders, ai, salary
 
 load_dotenv()
 
@@ -28,6 +28,7 @@ app.include_router(auth.router)
 app.include_router(tax.router)
 app.include_router(orders.router)
 app.include_router(ai.router)
+app.include_router(salary.router)
 
 
 @app.get("/")

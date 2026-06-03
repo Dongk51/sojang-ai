@@ -23,8 +23,8 @@ const TOOLS = [
     icon: '👥',
     title: '인건비 계산기',
     description: '주휴수당·초과근무 포함 인건비를 계산합니다.',
-    path: null,
-    available: false,
+    path: '/salary',
+    available: true,
   },
   {
     id: 'cashflow',

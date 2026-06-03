@@ -49,6 +49,19 @@ export const aiApi = {
     }),
 };
 
+export const salaryApi = {
+  calculate: (body, token) =>
+    request('/salary/calculate', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify(body),
+    }),
+  getHistory: (token) =>
+    request('/salary/history', {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+};
+
 export const orderApi = {
   list: (token) =>
     request('/orders/memo', {

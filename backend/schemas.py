@@ -78,3 +78,31 @@ class OrderMemoResponse(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class SalaryCalculationRequest(BaseModel):
+    hourly_wage: float
+    daily_hours: float
+    work_days: int
+    overtime_hours: float = 0
+    night_hours: float = 0
+    holiday_hours: float = 0
+
+
+class SalaryCalculationResponse(BaseModel):
+    id: int
+    hourly_wage: float
+    daily_hours: float
+    work_days: int
+    overtime_hours: float
+    night_hours: float
+    holiday_hours: float
+    base_salary: float
+    weekly_holiday_pay: float
+    overtime_pay: float
+    night_pay: float
+    holiday_pay: float
+    total_salary: float
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
