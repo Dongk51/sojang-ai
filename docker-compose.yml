@@ -27,19 +27,18 @@ services:
       - sojang-network
 
   db:
-    image: mysql:8.0
+    image: postgres:16
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
-      MYSQL_DATABASE: sojang_db
-      MYSQL_USER: sojang_user
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-sojang_password}
+      POSTGRES_DB: sojang_db
+      POSTGRES_USER: sojang_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sojang_password}
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "pg_isready -U sojang_user -d sojang_db"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -47,7 +46,7 @@ services:
       - sojang-network
 
 volumes:
-  mysql_data:
+  postgres_data:
 
 networks:
   sojang-network:
