@@ -3,35 +3,27 @@ import { useAuth } from '../context/AuthContext';
 
 const TOOLS = [
   {
-    id: 'vat',
-    icon: '🧾',
-    title: '부가세 계산기',
-    description: '매출·매입액으로 납부할 부가세를 계산합니다.',
-    path: '/vat-calculator',
+    id: 'asset-formula',
+    icon: '📐',
+    title: '자산형성 공식',
+    description: '월수입을 입력하면 저축·투자 배분을 추천합니다.',
+    path: '/asset-formula',
     available: true,
   },
   {
-    id: 'order-memo',
-    icon: '📦',
-    title: '발주 메모',
-    description: '발주할 재료를 메모하고 알림 시간을 설정합니다.',
-    path: '/order-memo',
+    id: 'goals',
+    icon: '🎯',
+    title: '목적자금 관리',
+    description: '목표 금액과 기한을 정하고 저축 진행률을 추적합니다.',
+    path: '/goals',
     available: true,
   },
   {
-    id: 'labor',
-    icon: '👥',
-    title: '인건비 계산기',
-    description: '주휴수당·초과근무 포함 인건비를 계산합니다.',
-    path: '/salary',
-    available: true,
-  },
-  {
-    id: 'cashflow',
-    icon: '💰',
-    title: '수익·지출 분석',
-    description: 'AI가 매출 패턴을 분석하고 개선점을 제안합니다.',
-    path: '/ai-analyze',
+    id: 'roadmap',
+    icon: '🗺️',
+    title: '나만의 로드맵',
+    description: '내 목표들을 기한순으로 한눈에 모아봅니다.',
+    path: '/roadmap',
     available: true,
   },
 ];
@@ -49,7 +41,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* 헤더 */}
       <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-bold text-indigo-600">소장 AI</h1>
+        <h1 className="text-lg font-bold text-indigo-600">자산형성 도우미</h1>
         <div className="flex items-center gap-4">
           <span className="text-sm text-gray-600 hidden sm:block">{user?.email}</span>
           <button

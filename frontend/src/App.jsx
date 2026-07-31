@@ -4,10 +4,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
-import VatCalculatorPage from './pages/VatCalculatorPage';
-import OrderMemoPage from './pages/OrderMemoPage';
-import AiAnalyzePage from './pages/AiAnalyzePage';
-import SalaryCalculatorPage from './pages/SalaryCalculatorPage';
+import AssetFormulaPage from './pages/AssetFormulaPage';
+import GoalsPage from './pages/GoalsPage';
+import RoadmapPage from './pages/RoadmapPage';
 
 export default function App() {
   return (
@@ -25,38 +24,30 @@ export default function App() {
             }
           />
           <Route
-            path="/vat-calculator"
+            path="/asset-formula"
             element={
               <ProtectedRoute>
-                <VatCalculatorPage />
+                <AssetFormulaPage />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/order-memo"
+            path="/goals"
             element={
               <ProtectedRoute>
-                <OrderMemoPage />
+                <GoalsPage />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/ai-analyze"
+            path="/roadmap"
             element={
               <ProtectedRoute>
-                <AiAnalyzePage />
+                <RoadmapPage />
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/salary"
-            element={
-              <ProtectedRoute>
-                <SalaryCalculatorPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

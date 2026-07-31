@@ -37,8 +37,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* 로고 */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-indigo-600">소장 AI</h1>
-          <p className="text-gray-500 mt-1 text-sm">소상공인 AI 업무 도우미</p>
+          <h1 className="text-3xl font-bold text-indigo-600">자산형성 도우미</h1>
+          <p className="text-gray-500 mt-1 text-sm">사회초년생을 위한 자산관리 서비스</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-8">

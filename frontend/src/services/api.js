@@ -27,60 +27,40 @@ export const authApi = {
     request('/auth/login', { method: 'POST', body: JSON.stringify(body) }),
 };
 
-export const taxApi = {
-  calculateVat: (body, token) =>
-    request('/tax/vat', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify(body),
-    }),
-  getVatHistory: (token) =>
-    request('/tax/vat/history', {
-      headers: { Authorization: `Bearer ${token}` },
-    }),
-};
-
-export const aiApi = {
-  analyze: (body, token) =>
-    request('/ai/analyze', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify(body),
-    }),
-};
-
-export const salaryApi = {
+export const formulaApi = {
   calculate: (body, token) =>
-    request('/salary/calculate', {
+    request('/formula/asset-plan', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(body),
     }),
-  getHistory: (token) =>
-    request('/salary/history', {
-      headers: { Authorization: `Bearer ${token}` },
-    }),
 };
 
-export const orderApi = {
+export const goalsApi = {
   list: (token) =>
-    request('/orders/memo', {
+    request('/goals', {
       headers: { Authorization: `Bearer ${token}` },
     }),
   create: (body, token) =>
-    request('/orders/memo', {
+    request('/goals', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(body),
     }),
   update: (id, body, token) =>
-    request(`/orders/memo/${id}`, {
+    request(`/goals/${id}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(body),
     }),
+  deposit: (id, amount, token) =>
+    request(`/goals/${id}/deposit`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ amount }),
+    }),
   remove: (id, token) =>
-    request(`/orders/memo/${id}`, {
+    request(`/goals/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     }),

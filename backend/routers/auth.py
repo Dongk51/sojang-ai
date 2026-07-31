@@ -18,7 +18,6 @@ def register(body: RegisterRequest, db: Session = Depends(get_db)):
     user = User(
         email=body.email,
         password_hash=hash_password(body.password),
-        business_type=body.business_type,
     )
     db.add(user)
     db.commit()

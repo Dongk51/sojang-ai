@@ -5,7 +5,6 @@ from datetime import datetime
 class RegisterRequest(BaseModel):
     email: EmailStr
     password: str
-    business_type: str
 
     @field_validator("password")
     @classmethod
@@ -13,13 +12,6 @@ class RegisterRequest(BaseModel):
         if len(v) < 8:
             raise ValueError("비밀번호는 8자 이상이어야 합니다.")
         return v
-
-    @field_validator("business_type")
-    @classmethod
-    def business_type_not_empty(cls, v: str) -> str:
-        if not v.strip():
-            raise ValueError("업종명을 입력해 주세요.")
-        return v.strip()
 
 
 class LoginRequest(BaseModel):
@@ -35,74 +27,48 @@ class TokenResponse(BaseModel):
 class UserResponse(BaseModel):
     id: int
     email: str
-    business_type: str
     created_at: datetime
 
     model_config = {"from_attributes": True}
 
 
-class VatCalculationRequest(BaseModel):
-    revenue: float
-    purchase: float
-
-
-class VatCalculationResponse(BaseModel):
-    id: int
-    revenue: float
-    purchase: float
-    vat_amount: float
-    created_at: datetime
-
-    model_config = {"from_attributes": True}
-
-
-class OrderMemoCreate(BaseModel):
+class SavingsGoalCreate(BaseModel):
     title: str
-    content: str
-    alert_datetime: datetime
+    target_amount: float
+    target_date: datetime
 
 
-class OrderMemoUpdate(BaseModel):
+class SavingsGoalUpdate(BaseModel):
     title: str | None = None
-    content: str | None = None
-    alert_datetime: datetime | None = None
-    is_alerted: bool | None = None
+    target_amount: float | None = None
+    target_date: datetime | None = None
 
 
-class OrderMemoResponse(BaseModel):
+class SavingsGoalDeposit(BaseModel):
+    amount: float
+
+
+class SavingsGoalResponse(BaseModel):
     id: int
     title: str
-    content: str
-    alert_datetime: datetime
-    is_alerted: bool
+    target_amount: float
+    target_date: datetime
+    current_amount: float
     created_at: datetime
+    progress_rate: float
+    required_monthly_saving: float
 
     model_config = {"from_attributes": True}
 
 
-class SalaryCalculationRequest(BaseModel):
-    hourly_wage: float
-    daily_hours: float
-    work_days: int
-    overtime_hours: float = 0
-    night_hours: float = 0
-    holiday_hours: float = 0
+class AssetFormulaRequest(BaseModel):
+    monthly_income: float
+    monthly_expense: float | None = None
 
 
-class SalaryCalculationResponse(BaseModel):
-    id: int
-    hourly_wage: float
-    daily_hours: float
-    work_days: int
-    overtime_hours: float
-    night_hours: float
-    holiday_hours: float
-    base_salary: float
-    weekly_holiday_pay: float
-    overtime_pay: float
-    night_pay: float
-    holiday_pay: float
-    total_salary: float
-    created_at: datetime
-
-    model_config = {"from_attributes": True}
+class AssetFormulaResponse(BaseModel):
+    recommended_saving: float
+    recommended_fixed_expense: float
+    recommended_free_spending: float
+    emergency_fund_target: float
+    message: str

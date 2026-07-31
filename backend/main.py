@@ -4,15 +4,15 @@ from dotenv import load_dotenv
 import os
 
 from database import engine, Base
-from routers import auth, tax, orders, ai, salary
+from routers import auth, goals, formula
 
 load_dotenv()
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="소장 AI API",
-    description="소상공인 AI 업무 도우미 백엔드",
+    title="사회초년생 자산관리 API",
+    description="사회 초년생을 위한 자산형성 공식·목적자금 관리 백엔드",
     version="0.1.0",
 )
 
@@ -25,15 +25,13 @@ app.add_middleware(
 )
 
 app.include_router(auth.router)
-app.include_router(tax.router)
-app.include_router(orders.router)
-app.include_router(ai.router)
-app.include_router(salary.router)
+app.include_router(goals.router)
+app.include_router(formula.router)
 
 
 @app.get("/")
 def root():
-    return {"message": "소장 AI API가 실행 중입니다."}
+    return {"message": "사회초년생 자산관리 API가 실행 중입니다."}
 
 
 @app.get("/health")

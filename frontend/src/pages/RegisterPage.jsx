@@ -3,15 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authApi } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
-const BUSINESS_TYPES = [
-  '음식점/카페',
-  '소매업/편의점',
-  '서비스업',
-  '미용/뷰티',
-  '교육/학원',
-  '기타',
-];
-
 export default function RegisterPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -20,7 +11,6 @@ export default function RegisterPage() {
     email: '',
     password: '',
     passwordConfirm: '',
-    business_type: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -34,7 +24,6 @@ export default function RegisterPage() {
   function validate() {
     if (form.password.length < 8) return '비밀번호는 8자 이상이어야 합니다.';
     if (form.password !== form.passwordConfirm) return '비밀번호가 일치하지 않습니다.';
-    if (!form.business_type) return '업종을 선택해 주세요.';
     return null;
   }
 
@@ -51,7 +40,6 @@ export default function RegisterPage() {
       const { access_token } = await authApi.register({
         email: form.email,
         password: form.password,
-        business_type: form.business_type,
       });
       login(access_token);
       navigate('/dashboard', { replace: true });
@@ -70,8 +58,8 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         {/* 로고 */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-indigo-600">소장 AI</h1>
-          <p className="text-gray-500 mt-1 text-sm">소상공인 AI 업무 도우미</p>
+          <h1 className="text-3xl font-bold text-indigo-600">자산형성 도우미</h1>
+          <p className="text-gray-500 mt-1 text-sm">사회초년생을 위한 자산관리 서비스</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-8">
@@ -144,26 +132,6 @@ export default function RegisterPage() {
               {passwordMismatch && (
                 <p className="mt-1 text-xs text-red-500">비밀번호가 일치하지 않습니다.</p>
               )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                업종
-              </label>
-              <select
-                name="business_type"
-                value={form.business_type}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition bg-white"
-              >
-                <option value="">업종을 선택하세요</option>
-                {BUSINESS_TYPES.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
             </div>
 
             <button
